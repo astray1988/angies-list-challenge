@@ -64,16 +64,24 @@ trait FLMyList[+A] {
   def foldLeft[B](f: B => A => B)(acc: B): B
 
   /**
+   * `foldLeft` returns results in the reverse of the desired order,
+   * so they have to be reversed again.
+   *
+   * Maybe should have used `foldRight`, instead.
+   */
+  def reverse() = foldLeft[FLMyList[A]](list => value => FLMyNode(value, list))(FLMyEmpty)
+
+  /**
    * All other methods are implemented in terms of `foldLeft`.
    */
-  def map[B](f: A => B) = foldLeft[FLMyList[B]](list => value => FLMyNode(f(value), list))(FLMyEmpty)
-  def filter(f: A => Boolean) = foldLeft[FLMyList[A]](list => value => if (f(value)) FLMyNode(value, list) else list)(FLMyEmpty)
+  def map[B](f: A => B) = foldLeft[FLMyList[B]](list => value => FLMyNode(f(value), list))(FLMyEmpty).reverse()
+  def filter(f: A => Boolean) = foldLeft[FLMyList[A]](list => value => if (f(value)) FLMyNode(value, list) else list)(FLMyEmpty).reverse()
   def zip[B, C](f: A => B => C)(that: FLMyList[B]) =
     foldLeft[Tuple2[FLMyList[C], FLMyList[B]]](
       list_that => value => list_that match {
         case (result, FLMyEmpty) => Tuple2(FLMyEmpty, FLMyEmpty)
         case (result, FLMyNode(thatHead, thatTail)) => Tuple2(FLMyNode(f(value)(thatHead), list_that._1), thatTail)
-      })(Tuple2(FLMyEmpty, that))._1
+      })(Tuple2(FLMyEmpty, that))._1.reverse()
   def groupBy[B](f: A => B): Map[B, FLMyList[A]] =
     foldLeft[Map[B, FLMyList[A]]](
       m => value => {

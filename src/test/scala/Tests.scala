@@ -57,6 +57,7 @@ class FPPracticeTests extends FunSuite {
     assert(FLMyNode(5, FLMyEmpty) == FLMyNode(5, FLMyEmpty))
     assert(FLMyNode("a", FLMyNode("b", FLMyNode("c", FLMyEmpty))) == FLMyNode("a", FLMyNode("b", FLMyNode("c", FLMyEmpty))))
   }
+  val plus = (x: Int) => (y: Int) => x + y
   val plus1 = (x: Int) => x + 1
   val pos = (x: Int) => x > 0
   test("MyList") {
@@ -64,10 +65,12 @@ class FPPracticeTests extends FunSuite {
     assert(MyNode(1, MyNode(2, MyNode(3, MyEmpty))).map(plus1) == MyNode(2, MyNode(3, MyNode(4, MyEmpty))))
     assert(MyNode(-1, MyNode(0, MyNode(1, MyEmpty))).filter(pos) == MyNode(1, MyEmpty))
     assert(MyNode(1, MyNode(3, MyNode(-1, MyNode(3, MyNode(5, MyEmpty))))).distinct() == MyNode(1, MyNode(3, MyNode(-1, MyNode(5, MyEmpty)))))
+    assert(MyNode(1, MyNode(2, MyNode(3, MyEmpty))).zip(plus)(MyNode(-1, MyNode(0, MyNode(1, MyEmpty)))) == MyNode(0, MyNode(2, MyNode(4, MyEmpty))))
   }
   test("FLMyList") {
     assert(FLMyEmpty.map(plus1) == FLMyEmpty)
     assert(FLMyNode(1, FLMyNode(2, FLMyNode(3, FLMyEmpty))).map(plus1) == FLMyNode(2, FLMyNode(3, FLMyNode(4, FLMyEmpty))))
-    assert(FLMyNode(-1, FLMyNode(0, FLMyNode(1, FLMyEmpty))).filter(pos) == FLMyNode(1, FLMyEmpty))
+    assert(FLMyNode(-1, FLMyNode(0, FLMyNode(1, FLMyNode(2, FLMyEmpty)))).filter(pos) == FLMyNode(1, FLMyNode(2, FLMyEmpty)))
+    assert(FLMyNode(1, FLMyNode(2, FLMyNode(3, FLMyEmpty))).zip(plus)(FLMyNode(-1, FLMyNode(0, FLMyNode(1, FLMyEmpty)))) == FLMyNode(0, FLMyNode(2, FLMyNode(4, FLMyEmpty))))
   }
 }
