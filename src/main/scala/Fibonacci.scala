@@ -26,7 +26,7 @@ object Fibonacci {
     case _ => {
       var x = BigInt(1)
       var y = BigInt(1)
-      for (_ <- 0 to (n - 3)) {
+      for (_ <- 0 to (n - 2)) {
         val oldy = y
         y = x + y
         x = oldy
