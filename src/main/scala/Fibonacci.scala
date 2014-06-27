@@ -12,7 +12,7 @@ object Fibonacci {
    */
   def fibonacci(n: Int): BigInt = n match {
     case 1 => BigInt(1)
-    case 2 => BigInt(2)
+    case 2 => BigInt(1)
     case _ => fibonacci(n - 1) + fibonacci(n - 2)
   }
 
@@ -22,11 +22,11 @@ object Fibonacci {
    */
   def fibonacci2(n: Int): BigInt = n match {
     case 1 => BigInt(1)
-    case 2 => BigInt(2)
+    case 2 => BigInt(1)
     case _ => {
       var x = BigInt(1)
       var y = BigInt(1)
-      for (_ <- 0 to (n - 2)) {
+      for (_ <- 0 to (n - 3)) {
         val oldy = y
         y = x + y
         x = oldy
