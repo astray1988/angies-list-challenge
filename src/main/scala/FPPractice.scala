@@ -7,7 +7,7 @@ sealed trait MyList[+A] {
   def filter(f: A => Boolean): MyList[A]
   def zip[B, C](f: A => B => C)(that: MyList[B]): MyList[C]
   def foldLeft[B](f: B => A => B)(acc: B): B
-  def distinct: MyList[A] = distinct(Set[Any]())
+  def distinct(): MyList[A] = distinct(Set[Any]())
   def distinct(set: Set[Any]): MyList[A]
   def groupBy[B](f: A => B): Map[B, MyList[A]]
 }
@@ -81,7 +81,7 @@ trait FLMyList[+A] {
         m + Tuple2(k, FLMyNode(value, if (m contains k) m(k) else FLMyEmpty))
       }
       )(Map[B, FLMyList[A]]())
-  def distinct = groupBy(x => x).keys.toList // Loses element order, but easier to write
+  def distinct() = groupBy(x => x).keys.toList // Loses element order, but easier to write
 }
 
 case class FLMyNode[+A](head: A, tail: FLMyList[A]) extends FLMyList[A] {

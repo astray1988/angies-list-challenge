@@ -63,6 +63,7 @@ class FPPracticeTests extends FunSuite {
     assert(MyEmpty.map(plus1) == MyEmpty)
     assert(MyNode(1, MyNode(2, MyNode(3, MyEmpty))).map(plus1) == MyNode(2, MyNode(3, MyNode(4, MyEmpty))))
     assert(MyNode(-1, MyNode(0, MyNode(1, MyEmpty))).filter(pos) == MyNode(1, MyEmpty))
+    assert(MyNode(1, MyNode(3, MyNode(-1, MyNode(3, MyNode(5, MyEmpty))))).distinct() == MyNode(1, MyNode(3, MyNode(-1, MyNode(5, MyEmpty)))))
   }
   test("FLMyList") {
     assert(FLMyEmpty.map(plus1) == FLMyEmpty)
