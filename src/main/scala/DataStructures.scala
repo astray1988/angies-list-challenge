@@ -41,9 +41,8 @@ class LRUCache[K, V](val source: Source[K, V], val recentCacheSize: Int) {
     if (mutMap contains key)
       mutMap(key)
 
-    makeRoom()
-
     (source fetch key).map(value => {
+      makeRoom()
       mutMap += newKV(key, value)
       value
     })
