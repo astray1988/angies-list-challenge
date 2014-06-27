@@ -2,6 +2,8 @@
 
 Answers to interview questions for Scala role with Angie's List.
 
+Time spent: ~4 hours
+
 Parts 1-4 are completed in the following source files:
 
   1. [Fibonacci.scala](https://github.com/rkoeninger/angies-list-challenge/blob/master/src/main/scala/Fibonacci.scala)
