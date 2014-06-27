@@ -31,6 +31,8 @@ class LRUCache[K, V](val source: Source[K, V], val recentCacheSize: Int) {
     }
   }
 
+  def cacheSize = mutMap.size
+
   /**
    * Lookup for values in cache are amortized constant time,
    * same as the hashtable that backs this `LRUCache`.

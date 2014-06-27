@@ -13,9 +13,9 @@ Parts 1-4 are completed in the following source files:
 
 Part 5 is answered below.
 
-### Building
+### Building and Tests
 
-Code can be found in `./src/main/scala`. It can be built with SBT.
+Code can be found in `./src/main/scala`. It can be built and tested with SBT.
 
 ## Functional Programming Theory
 
