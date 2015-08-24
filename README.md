@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rkoeninger/angies-list-challenge.svg?branch=master)](https://travis-ci.org/rkoeninger/angies-list-challenge)
+
 # Angie's List Challenge
 
 Answers to interview questions for Scala role with Angie's List.
